@@ -107,6 +107,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -3, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 5
+      m_TileSpriteIndex: 5
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -1, y: 0, z: 0}
     second:
       serializedVersion: 2
@@ -149,6 +159,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 7a0e0c25f0610d6418728d7f2bc62631, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: eaceb61d85d5fa64c930f3d2b6e85f6e, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 9bfbcb7a0bd83b143ad7d32fd236039d, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 5b2cd73d1eac3334fbfcbe48804c0bf6, type: 3}
@@ -160,8 +172,10 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: 05f749de7e0643848a44a06255f74eef, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: b48c65f1ce9e4734ba7ddc32e94a1ad9, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 63657a8e186e0044092ecadffc671bee, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 5
+  - m_RefCount: 6
     m_Data:
       e00: 1
       e01: 0
@@ -180,13 +194,13 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 5
+  - m_RefCount: 6
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: -1, y: -7, z: 0}
-  m_Size: {x: 13, y: 8, z: 1}
+  m_Origin: {x: -3, y: -7, z: 0}
+  m_Size: {x: 15, y: 8, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -255,7 +269,7 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!114 &9142664138769680789
+--- !u!114 &1095184889657996886
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

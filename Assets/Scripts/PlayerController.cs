@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
     // 플레이어의 경험치와 최대 경험치
     public int exp = 0;
     public int maxExp = 100;
@@ -30,11 +29,11 @@ public class PlayerController : MonoBehaviour
     public sbyte minTemperature = 0;
     public sbyte maxTemperature = 2;
 
-
     // 플레이어의 이동속도
     public float speed = 0;
-    public float walkSpeed = 35;
-    private float runSpeed;
+    public float walkSpeed = 120;
+    public float runSpeed = 240;
+
     // 플레이어의 중력 관할
     private Rigidbody2D rb;
     // 플레이어 위치를 벡터로 받아 관할
@@ -59,7 +58,6 @@ public class PlayerController : MonoBehaviour
         // 상하 방향키를 눌러 상하로 이동 가능
         vector.y = Input.GetAxis("Vertical");
         UpdateAnimationAndMove();
-            
     }
 
     // 플레이어 이동 시 애니메이션을 재생하는 파라미터를 조작하는 함수
@@ -67,7 +65,8 @@ public class PlayerController : MonoBehaviour
     {
         if (vector != Vector3.zero)
         {
-            speed = walkSpeed;
+            // 왼쪽 Alt 키를 누르면서 방향키로 조작하면 달려가며 누르지 않은 경우 걷는다.
+            speed = Input.GetKey(KeyCode.LeftAlt) ? runSpeed : walkSpeed;
             MoveCharacter();
             animator.SetFloat("moveX", vector.x);
             animator.SetFloat("moveY", vector.y);
