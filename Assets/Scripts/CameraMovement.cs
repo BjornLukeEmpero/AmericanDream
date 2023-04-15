@@ -14,21 +14,10 @@ public class CameraMovement : MonoBehaviour
     // 카메라가 이동 가능한 최소 좌표값
     public Vector2 minPosition;
 
-    public EnvironmentManager environmentManager;
-
-    
     // Start is called before the first frame update
     void Start()
     {
-        
 
-
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        maxPosition = environmentManager.maxPos;
-        minPosition = environmentManager.minPos;
     }
 
     // Update is called once per frame

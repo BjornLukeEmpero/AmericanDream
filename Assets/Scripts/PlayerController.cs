@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            // 정지한 경우
             speed = 0;
             animator.SetBool("moving", false);
         }
