@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
     // 플레이어의 애니메이션을 관할
     private Animator animator;
 
+    private AudioManager theAudio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +50,8 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
+
+   
 
     // Update is called once per frame
     void Update()
