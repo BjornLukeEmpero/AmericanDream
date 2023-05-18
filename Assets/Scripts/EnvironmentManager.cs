@@ -1,3 +1,5 @@
+// 구현자: 이재윤
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +10,6 @@ public class EnvironmentManager : MonoBehaviour
     public Vector2 maxPos;
     // 카메라의 최소 좌표 범위
     public Vector2 minPos;
-    // 현재 지역의 온도
-    public sbyte temperature;
     // 카메라 컴포넌트
     private CameraMovement camera;
 
