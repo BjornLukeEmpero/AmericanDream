@@ -128,70 +128,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 021_.45Coroot
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f06996ab1e4b25b44adbdb4868096c02
-      internalID: -1857177984
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 022_.45Soft
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 33fa823f1af681b4f94253dae0b304b2
-      internalID: -140296285
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 023_.56Spenso
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 696a5f8daf1fa174f9b494ad8957017b
-      internalID: -1918573289
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 024_.44Benjamin
+      name: Items_009_.45Coroot
       rect:
         serializedVersion: 2
         x: 0
@@ -205,14 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b40b90e978c0957458dddc03f7b40eb9
-      internalID: -1690986442
+      spriteID: f2f6cae68798e504bb96ae74a7067839
+      internalID: -745117458
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 025_.45Govern
+      name: Items_010_.45Soft
       rect:
         serializedVersion: 2
         x: 16
@@ -226,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 260e53d00b971e24d9796a0115f5c070
-      internalID: 1011161346
+      spriteID: 95f1443d1e7b1cb41879b73082db83c1
+      internalID: 1341102521
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 026_12Gag
+      name: Items_011_.56Spenso
       rect:
         serializedVersion: 2
         x: 32
@@ -247,8 +184,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f054405bbf0653240a388d74663f0bac
-      internalID: -1075032578
+      spriteID: d3d5e0bbafe9e7844b0e09d172b40602
+      internalID: 29929008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Items_012_.44Benjamin
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c34794f91bb16e4d999678f0407d6e4
+      internalID: -778594271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Items_013_.45Govern
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed4cfc8e658ba8f498fda2ae9c6bb5e8
+      internalID: -115021876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Items_014_12Gag
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fba0156e5073eff4dac5bb1e4fc2a277
+      internalID: -2011807357
       vertices: []
       indices: 
       edges: []
@@ -264,12 +264,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      024_.44Benjamin: -1690986442
-      023_.56Spenso: -1918573289
-      025_.45Govern: 1011161346
-      022_.45Soft: -140296285
-      026_12Gag: -1075032578
-      021_.45Coroot: -1857177984
+      Items_014_12Gag: -2011807357
+      Items_011_.56Spenso: 29929008
+      Items_012_.44Benjamin: -778594271
+      Items_010_.45Soft: 1341102521
+      Items_009_.45Coroot: -745117458
+      Items_013_.45Govern: -115021876
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

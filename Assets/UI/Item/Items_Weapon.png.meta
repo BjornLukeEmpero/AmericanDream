@@ -128,11 +128,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 001_CorootRevolver
+      name: Items_001_CorootRevolver
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -142,77 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b367bd48956c7e64183d790ac7d1b908
-      internalID: -161992865
+      spriteID: 9b9dcfe50ebf3dd408fe219b5dd3d072
+      internalID: -422147816
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 002_SoftRevolver
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a3992a0dae195d24498c358e775cc4e4
-      internalID: 1104146379
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 003_SpensoRifle
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d493733a228fbef45aec06e54860c9bd
-      internalID: 80559718
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 004_BenjaminM1867
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d3393bddf8cb2f445a0f8cf29329e570
-      internalID: 1991175878
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 005_DayfieldRifle
+      name: Items_002_SoftRevolver
       rect:
         serializedVersion: 2
         x: 16
@@ -220,20 +157,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e4568e8695e25b42ac32ca2f737b900
-      internalID: -789811184
+      spriteID: 9bb9cc7799bacaf44b25c11d6df10048
+      internalID: 111067982
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 006_MarksRifle
+      name: Items_003_SpensoRifle
       rect:
         serializedVersion: 2
         x: 32
@@ -241,20 +178,41 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b166b6fa165073e409361f8b3f227e64
-      internalID: 1829849165
+      spriteID: 69911b973b9882c4f8bd0ba9da8254bc
+      internalID: 931425827
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 007_RemmisDoubleShotgun
+      name: Items_004_BenjaminM1867
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 793c6d779d3383f459da58e6cd295d2d
+      internalID: 537663247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Items_005_DayfieldRifle
       rect:
         serializedVersion: 2
         x: 0
@@ -262,20 +220,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 66730c7ba8a88c84895e51a4f2687acd
-      internalID: -2088527245
+      spriteID: 8056ec6a842702444b4e0912bc8fdd72
+      internalID: 904038351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 008_WinnersShotgun
+      name: Items_006_MarksRifle
       rect:
         serializedVersion: 2
         x: 16
@@ -283,14 +241,56 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae70bf2ef125c154b98afb33c3cab768
-      internalID: -735107098
+      spriteID: 0b0950eed58157b47b6ea94eb8dc5baf
+      internalID: -1325748627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Items_007_RemisDoubleShotgun
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab2f1801d2b872646977dc757e531a96
+      internalID: 749930854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Items_008_WinnersShotgun
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f42c988951d76f34aa004bdf0ff4b15c
+      internalID: -920033708
       vertices: []
       indices: 
       edges: []
@@ -306,14 +306,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      006_MarksRifle: 1829849165
-      002_SoftRevolver: 1104146379
-      005_DayfieldRifle: -789811184
-      003_SpensoRifle: 80559718
-      007_RemmisDoubleShotgun: -2088527245
-      008_WinnersShotgun: -735107098
-      001_CorootRevolver: -161992865
-      004_BenjaminM1867: 1991175878
+      Items_008_WinnersShotgun: -920033708
+      Items_004_BenjaminM1867: 537663247
+      Items_001_CorootRevolver: -422147816
+      Items_007_RemisDoubleShotgun: 749930854
+      Items_006_MarksRifle: -1325748627
+      Items_003_SpensoRifle: 931425827
+      Items_005_DayfieldRifle: 904038351
+      Items_002_SoftRevolver: 111067982
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
