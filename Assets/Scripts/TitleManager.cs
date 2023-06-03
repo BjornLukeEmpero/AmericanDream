@@ -34,6 +34,10 @@ public class SaveData
     public string currentTemperature;
 }
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="clickStartDlgSaveBtn">현재 선택한 버튼</param>
 public class TitleManager : MonoBehaviour
 {
     // 세이브파일 선택 창
@@ -78,6 +82,15 @@ public class TitleManager : MonoBehaviour
         string[] jsonData = new string[4];
         jsonData[clickStartDlgSaveBtn] = File.ReadAllText(Application.persistentDataPath + "/SaveData" + $"{clickStartDlgSaveBtn}" + ".txt");
         saveData[clickStartDlgSaveBtn] = JsonUtility.FromJson<SaveData>(jsonData[clickStartDlgSaveBtn]);
+    }
+
+    /// <summary>
+    /// 저장된 게임 데이터 삭제
+    /// </summary>
+    public void Delete()
+    {
+        File.Delete(Application.persistentDataPath + "/SaveData" + $"{clickStartDlgSaveBtn}" + ".txt");
+        messageBox[3].gameObject.SetActive(false);
     }
 
 
@@ -202,7 +215,6 @@ public class TitleManager : MonoBehaviour
                 else
                 {
                     messageBox[2].gameObject.SetActive(true);
-                    
                 }
                 break;
             case 2:
@@ -237,9 +249,60 @@ public class TitleManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 세이브파일 삭제하기
+    /// </summary>
     public void StartDlgDeleteGame()
     {
+        switch (clickStartDlgSaveBtn)
+        {
+            case 0:
+                if(!File.Exists(Application.persistentDataPath + "/SaveData0.txt"))
+                {
+                    messageBox[1].gameObject.SetActive(true);
+                }
+                else
+                {
+                    messageBox[3].gameObject.SetActive(true);
+                }
+                break;
 
+            case 1:
+                if (!File.Exists(Application.persistentDataPath + "/SaveData1.txt"))
+                {
+                    messageBox[1].gameObject.SetActive(true);
+                }
+                else
+                {
+                    messageBox[3].gameObject.SetActive(true);
+                }
+                break;
+
+            case 2:
+                if (!File.Exists(Application.persistentDataPath + "/SaveData2.txt"))
+                {
+                    messageBox[1].gameObject.SetActive(true);
+                }
+                else
+                {
+                    messageBox[3].gameObject.SetActive(true);
+                }
+                break;
+
+            case 3:
+                if (!File.Exists(Application.persistentDataPath + "/SaveData3.txt"))
+                {
+                    messageBox[1].gameObject.SetActive(true);
+                }
+                else
+                {
+                    messageBox[3].gameObject.SetActive(true);
+                }
+                break;
+            default:
+                messageBox[0].gameObject.SetActive(true);
+                break;
+        }
     }
 
     // 세이브파일 선택 창 닫기
@@ -280,6 +343,11 @@ public class TitleManager : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    private void Awake()
+    {
+        
     }
 
     // Start is called before the first frame update

@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 게임 내 카메라 이동 범위와 환경을 나타내는 클래스
+/// </summary>
 public class EnvironmentManager : MonoBehaviour
 {
     // 카메라의 최대 좌표 범위

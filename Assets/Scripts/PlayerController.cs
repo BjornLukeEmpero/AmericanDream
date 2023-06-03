@@ -11,6 +11,9 @@ using TMPro;
 using UnityEditor.UIElements;
 using System.Resources;
 
+/// <summary>
+/// 플레이어 관련 클래스
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     // 플레이어 레벨과 최대 레벨
@@ -76,7 +79,9 @@ public class PlayerController : MonoBehaviour
 
     private AudioManager theAudio;
 
-    // 일시정지 기능
+    /// <summary>
+    /// 일시정지 함수
+    /// </summary>
     void Pause()
     {
         if (pauseState == false)
@@ -179,7 +184,6 @@ public class PlayerController : MonoBehaviour
         statUI[5].text = "SA: " + $"{satiety}" + "/" + $"{maxSatiety}";
         statUI[6].text = "Lv: " + $"{quench}" + "/" + $"{maxQuench}";   
     }
-
 
     // 플레이어 이동 시 애니메이션을 재생하는 파라미터를 조작하는 함수
     void UpdateAnimationAndMove()
