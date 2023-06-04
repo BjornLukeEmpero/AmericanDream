@@ -1,3 +1,5 @@
+// 작성자: 이재윤, 간접 기여자: 신성범 최근작성일자: 2023-06-04
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,15 +13,20 @@ public class EnvironmentManager : MonoBehaviour
     public Vector2 maxPos;
     // 카메라의 최소 좌표 범위
     public Vector2 minPos;
+    // 현재 지역의 배경음악
+    public AudioClip audioClip;
     // 현재 지역의 온도
     public sbyte temperature;
     // 카메라 컴포넌트
     private CameraMovement camera;
 
+    private AudioSource audioSource;
+
     void Start()
     {
         // 카메라에 메인 카메라의 컴포넌트 연결
         camera = Camera.main.GetComponent<CameraMovement>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -32,6 +39,22 @@ public class EnvironmentManager : MonoBehaviour
             // 카메라의 최대 좌표 범위를 미리 저장된 값으로 설정
             camera.maxPosition = maxPos;
             
+            // 재생할 배경음악을 가져온다
+            audioSource.clip = audioClip;
+            // 가져온 배경음악을 재생한다
+            audioSource.Play();
         }
     }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            // 배경음악을 중단한다.
+            audioSource.Stop();
+        }
+        
+        
+    }
+
 }
