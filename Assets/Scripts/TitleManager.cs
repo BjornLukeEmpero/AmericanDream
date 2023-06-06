@@ -46,6 +46,8 @@ public class TitleManager : MonoBehaviour
     public SaveData[] saveData = new SaveData[4];
     // 세이브파일 관련 정보를 저장하는 곳
     public TextMeshProUGUI[] saveDataInfo = new TextMeshProUGUI[4];
+    BGMManager BGM;
+    AudioSource backmusic;
 
 
     // 게임 데이터 초기화
@@ -287,6 +289,9 @@ public class TitleManager : MonoBehaviour
     {
         if (clickStartDlgSaveBtn != -1)
             Load();
+        BGM = FindObjectOfType<BGMManager>();
+        backmusic = BGM.GetComponent<AudioSource>();
+        if (backmusic.isPlaying) backmusic.Pause();
     }
 
     // Update is called once per frame
