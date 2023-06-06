@@ -17,41 +17,41 @@ using System.Resources;
 public class PlayerController : MonoBehaviour
 {
     // 플레이어 레벨과 최대 레벨
-    public sbyte level = 1;
-    public sbyte maxLevel = 10;
+    public byte level = 1;
+    private byte maxLevel = 10;
 
     // 플레이어 직업
     public string playerJob = "무직";
     
     // 플레이어의 경험치와 최대 경험치
-    public int exp;
-    public int maxExp;
+    public ushort exp;
+    public ushort maxExp;
     
     // 플레이어의 생명력과 최대 생명력
-    public short hp;
-    public short maxHp;
+    public byte hp;
+    public byte maxHp;
 
     // 플레이어의 스태미나와 최대 스태미나
-    public sbyte stamina;
-    public sbyte maxStamina;
+    public byte stamina;
+    public byte maxStamina;
 
     // 플레이어의 포만감과 최대 포만감
-    public sbyte satiety;
-    public sbyte maxSatiety = 100;
+    public byte satiety;
+    private byte maxSatiety = 100;
 
     // 플레이어의 수분과 최대 수분
-    public sbyte quench;
-    public sbyte maxQuench = 100;
+    public byte quench;
+    private byte maxQuench = 100;
 
     // 플레이어의 현재 체온, 최저 체온, 최대 체온
-    public sbyte currrentTemperature;
-    public sbyte minTemperature = 0;
-    public sbyte maxTemperature = 2;
+    public byte currrentTemperature;
+    private byte minTemperature = 0;
+    private byte maxTemperature = 2;
 
     // 플레이어의 현재 이동속도, 걷기 속도, 달리기 속도
-    public float speed = 0;
-    public float walkSpeed = 120;
-    public float runSpeed = 240;
+    private float speed = 0;
+    private float walkSpeed = 120;
+    private float runSpeed = 240;
 
     // 일시정지 상태 알림
     private bool pauseState = false;
@@ -124,11 +124,8 @@ public class PlayerController : MonoBehaviour
     }
 
     // 게임을 저장하는 버튼
-    public void Pause_SaveGame()
-    {
-        Save();
-    }
-
+    public void Pause_SaveGame() => Save();
+    
     // 게임을 저장하고 종료해 타이틀 화면으로 가는 버튼
     public void Pause_SaveAndExitGame()
     {
@@ -148,16 +145,16 @@ public class PlayerController : MonoBehaviour
     
     public void LoadedInfoInput()
     {
-        level = Convert.ToSByte(saveData[currentSaveNum].level);
+        level = Convert.ToByte(saveData[currentSaveNum].level);
         playerJob = saveData[currentSaveNum].job;
-        exp = Convert.ToSByte(saveData[currentSaveNum].exp);
-        maxExp = Convert.ToSByte(saveData[currentSaveNum].maxExp);
-        hp = Convert.ToInt16(saveData[currentSaveNum].hp);
-        maxHp = Convert.ToInt16(saveData[currentSaveNum].maxHp);
-        stamina = Convert.ToSByte(saveData[currentSaveNum].stamina);
-        maxStamina = Convert.ToSByte(saveData[currrentTemperature].maxStamina);
-        satiety = Convert.ToSByte(saveData[currentSaveNum].satiety);
-        quench = Convert.ToSByte(saveData[currentSaveNum].quench);
+        exp = Convert.ToUInt16(saveData[currentSaveNum].exp);
+        maxExp = Convert.ToUInt16(saveData[currentSaveNum].maxExp);
+        hp = Convert.ToByte(saveData[currentSaveNum].hp);
+        maxHp = Convert.ToByte(saveData[currentSaveNum].maxHp);
+        stamina = Convert.ToByte(saveData[currentSaveNum].stamina);
+        maxStamina = Convert.ToByte(saveData[currrentTemperature].maxStamina);
+        satiety = Convert.ToByte(saveData[currentSaveNum].satiety);
+        quench = Convert.ToByte(saveData[currentSaveNum].quench);
         currentSaveNum = Convert.ToSByte(saveData[currentSaveNum].currentTemperature);
 
     }
@@ -206,11 +203,7 @@ public class PlayerController : MonoBehaviour
     }
 
     //플레이어 이동 함수
-    void MoveCharacter()
-    {
-        rb.MovePosition(transform.position + vector * speed * Time.deltaTime);
-    }
-
+    void MoveCharacter() => rb.MovePosition(transform.position + vector * speed * Time.deltaTime);
     
     void Awake()
     {

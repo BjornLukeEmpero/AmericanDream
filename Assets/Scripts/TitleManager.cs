@@ -95,36 +95,19 @@ public class TitleManager : MonoBehaviour
 
 
     // 게임 시작 창 띄우기
-    public void GameStart()
-    {
-        // 세이브파일 선택 창을 띄운다
-        StartDlg.gameObject.SetActive(true);
-    }
-    
+    public void GameStart() => StartDlg.gameObject.SetActive(true);
     
     // 세이브 파일 1 클릭 시
-    public void StartDlgSaveBtn1()
-    {
-        clickStartDlgSaveBtn = 0;
-    }
+    public void StartDlgSaveBtn1() => clickStartDlgSaveBtn = 0;
 
     // 세이브 파일 2 클릭 시
-    public void StartDlgSaveBtn2()
-    {
-        clickStartDlgSaveBtn = 1;
-    }
+    public void StartDlgSaveBtn2() => clickStartDlgSaveBtn = 1;
 
     // 세이브 파일 3 클릭 시
-    public void StartDlgSaveBtn3()
-    {
-        clickStartDlgSaveBtn = 2;
-    }
+    public void StartDlgSaveBtn3() => clickStartDlgSaveBtn = 2;
 
     // 세이브 파일 4 클릭 시
-    public void StartDlgSaveBtn4()
-    {
-        clickStartDlgSaveBtn = 3;
-    }
+    public void StartDlgSaveBtn4() => clickStartDlgSaveBtn = 3;
 
     // 세이브파일 선택 창 이어하기
     public void StartDlgLoadGame()
@@ -135,9 +118,7 @@ public class TitleManager : MonoBehaviour
         {
             case 0:
                 if(!File.Exists(Application.persistentDataPath + "/SaveData0.txt"))
-                {
                     messageBox[1].gameObject.SetActive(true);
-                }
                 else
                 {
                     Load();
@@ -146,9 +127,7 @@ public class TitleManager : MonoBehaviour
                 break;
             case 1:
                 if (!File.Exists(Application.persistentDataPath + "/SaveData1.txt"))
-                {
                     messageBox[1].gameObject.SetActive(true);
-                }
                 else
                 {
                     Load();
@@ -157,9 +136,7 @@ public class TitleManager : MonoBehaviour
                 break;
             case 2:
                 if (!File.Exists(Application.persistentDataPath + "/SaveData2.txt"))
-                {
                     messageBox[1].gameObject.SetActive(true);
-                }
                 else
                 {
                     Load();
@@ -168,9 +145,7 @@ public class TitleManager : MonoBehaviour
                 break;
             case 3:
                 if (!File.Exists(Application.persistentDataPath + "/SaveData3.txt"))
-                {
                     messageBox[1].gameObject.SetActive(true);
-                }
                 else
                 {
                     Load();
@@ -200,9 +175,7 @@ public class TitleManager : MonoBehaviour
                     SceneManager.LoadScene("PlayingTown");
                 }
                 else
-                {
                     messageBox[2].gameObject.SetActive(true);
-                }
                 break;
             case 1:
                 if (!File.Exists(Application.persistentDataPath + "/SaveData1.txt"))
@@ -213,9 +186,7 @@ public class TitleManager : MonoBehaviour
                     SceneManager.LoadScene("PlayingTown");
                 }
                 else
-                {
                     messageBox[2].gameObject.SetActive(true);
-                }
                 break;
             case 2:
                 if (!File.Exists(Application.persistentDataPath + "/SaveData2.txt"))
@@ -226,9 +197,7 @@ public class TitleManager : MonoBehaviour
                     SceneManager.LoadScene("PlayingTown");
                 }
                 else
-                {
                     messageBox[2].gameObject.SetActive(true);
-                }
                 break;
             case 3:
                 if (!File.Exists(Application.persistentDataPath + "/SaveData3.txt"))
@@ -239,9 +208,7 @@ public class TitleManager : MonoBehaviour
                     SceneManager.LoadScene("PlayingTown");
                 }
                 else
-                {
                     messageBox[2].gameObject.SetActive(true);
-                }
                 break;
             default:
                 messageBox[0].gameObject.SetActive(true);
@@ -258,46 +225,30 @@ public class TitleManager : MonoBehaviour
         {
             case 0:
                 if(!File.Exists(Application.persistentDataPath + "/SaveData0.txt"))
-                {
                     messageBox[1].gameObject.SetActive(true);
-                }
                 else
-                {
                     messageBox[3].gameObject.SetActive(true);
-                }
                 break;
 
             case 1:
                 if (!File.Exists(Application.persistentDataPath + "/SaveData1.txt"))
-                {
                     messageBox[1].gameObject.SetActive(true);
-                }
                 else
-                {
                     messageBox[3].gameObject.SetActive(true);
-                }
                 break;
 
             case 2:
                 if (!File.Exists(Application.persistentDataPath + "/SaveData2.txt"))
-                {
                     messageBox[1].gameObject.SetActive(true);
-                }
                 else
-                {
                     messageBox[3].gameObject.SetActive(true);
-                }
                 break;
 
             case 3:
                 if (!File.Exists(Application.persistentDataPath + "/SaveData3.txt"))
-                {
                     messageBox[1].gameObject.SetActive(true);
-                }
                 else
-                {
                     messageBox[3].gameObject.SetActive(true);
-                }
                 break;
             default:
                 messageBox[0].gameObject.SetActive(true);
@@ -306,10 +257,7 @@ public class TitleManager : MonoBehaviour
     }
 
     // 세이브파일 선택 창 닫기
-    public void StartDlgClose()
-    {
-        StartDlg.gameObject.SetActive(false);
-    }
+    public void StartDlgClose() => StartDlg.gameObject.SetActive(false);
 
     // 메시지 박스 닫기
     public void MsgBoxClose()
@@ -329,11 +277,6 @@ public class TitleManager : MonoBehaviour
         SceneManager.LoadScene("PlayingTown");
     }
 
-    public void MsgBoxDelete()
-    {
-
-    }
-
     // 
     public void Exit()
     {
@@ -343,11 +286,6 @@ public class TitleManager : MonoBehaviour
 #else
         Application.Quit();
 #endif
-    }
-
-    private void Awake()
-    {
-        
     }
 
     // Start is called before the first frame update

@@ -5119,50 +5119,51 @@ MonoBehaviour:
   - {fileID: 618053217}
   clickStartDlgSaveBtn: -1
   saveData:
-  - level: 
+  - level: 0
     job: 
-    exp: 
-    maxExp: 
-    hp: 
-    maxHp: 
-    stamina: 
-    maxStamina: 
-    satiety: 
-    quench: 
-    currentTemperature: 
-  - level: 
+    exp: 0
+    maxExp: 0
+    hp: 0
+    maxHp: 0
+    stamina: 0
+    maxStamina: 0
+    satiety: 0
+    quench: 0
+    currentTemperature: 0
+  - level: 0
     job: 
-    exp: 
-    maxExp: 
-    hp: 
-    maxHp: 
-    stamina: 
-    maxStamina: 
-    satiety: 
-    quench: 
-    currentTemperature: 
-  - level: 
+    exp: 0
+    maxExp: 0
+    hp: 0
+    maxHp: 0
+    stamina: 0
+    maxStamina: 0
+    satiety: 0
+    quench: 0
+    currentTemperature: 0
+  - level: 0
     job: 
-    exp: 
-    maxExp: 
-    hp: 
-    maxHp: 
-    stamina: 
-    maxStamina: 
-    satiety: 
-    quench: 
-    currentTemperature: 
-  - level: 
+    exp: 0
+    maxExp: 0
+    hp: 0
+    maxHp: 0
+    stamina: 0
+    maxStamina: 0
+    satiety: 0
+    quench: 0
+    currentTemperature: 0
+  - level: 0
     job: 
-    exp: 
-    maxExp: 
-    hp: 
-    maxHp: 
-    stamina: 
-    maxStamina: 
-    satiety: 
-    quench: 
-    currentTemperature: 
+    exp: 0
+    maxExp: 0
+    hp: 0
+    maxHp: 0
+    stamina: 0
+    maxStamina: 0
+    satiety: 0
+    quench: 0
+    currentTemperature: 0
+  path: 
   saveDataInfo:
   - {fileID: 1884169316}
   - {fileID: 1604073726}
