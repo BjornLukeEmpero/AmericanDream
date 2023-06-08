@@ -8,9 +8,11 @@ using UnityEngine;
 public class Item
 {
     // 아이템 번호
-    public byte itemIndex;
+    public string itemIndex;
     // 아이템명
-    public string itemName;
+    public string itemName; 
+    // 아이템명 한국어
+    public string itemNameKor;
     // 플레이어 입장에서 아이템 구매가
     public ushort buyPrice;
     // 플레이어 입장에서 아이템 판매가
@@ -22,10 +24,11 @@ public class Item
 
     public Sprite itemIcon;
 
-    public Item(byte itemIndex, string itemName, ushort buyPrice, ushort sellPrice, byte maxStack, string itemExplanation)
+    public Item(string itemIndex, string itemName, string itemNameKor, ushort buyPrice, ushort sellPrice, byte maxStack, string itemExplanation)
     {
         this.itemIndex = itemIndex;
         this.itemName = itemName;
+        this.itemNameKor = itemNameKor;
         this.buyPrice = buyPrice;
         this.sellPrice = sellPrice;
         this.maxStack = maxStack;

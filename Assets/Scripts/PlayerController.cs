@@ -10,43 +10,179 @@ using System.IO;
 using TMPro;
 using UnityEditor.UIElements;
 using System.Resources;
+using Unity.VisualScripting;
 
 /// <summary>
 /// 플레이어 관련 클래스
 /// </summary>
+[System.Serializable]
 public class PlayerController : MonoBehaviour
 {
-    // 플레이어 레벨과 최대 레벨
-    public byte level = 1;
+    // 플레이어 레벨
+    private byte level = 1;
+    public byte Level
+    {
+        get { return level; }
+        set
+        {
+            // 레벨 범위 제한
+            if(level >= 1 && level <= maxLevel)
+                level = value;
+        }
+    }
+    // 플레이어 최대 레벨
     private byte maxLevel = 10;
 
     // 플레이어 직업
-    public string playerJob = "무직";
+    private string playerJob = "무직";
+    public string PlayerJob
+    {
+        get { return playerJob; }
+        set
+        {
+            playerJob = value;
+        }
+    }
     
-    // 플레이어의 경험치와 최대 경험치
-    public ushort exp;
-    public ushort maxExp;
+    // 플레이어의 경험치
+    private ushort exp;
+    public ushort Exp
+    {
+        get { return exp; }
+        set
+        {
+            // 경험치 값 범위 제한
+            if(exp >= 0 && exp <= maxExp)
+                exp = value;
+        }
+    }
+
+    // 플레이어의 최대 경험치
+    private ushort maxExp;
+    public ushort MaxExp
+    {
+        get { return maxExp; }
+        set
+        {
+            maxExp = value;
+        }
+    }
     
-    // 플레이어의 생명력과 최대 생명력
-    public byte hp;
-    public byte maxHp;
+    // 플레이어의 생명력
+    private byte hp;
+    public byte Hp
+    {
+        get { return hp; }
+        set
+        {
+            // 생명력 값 범위 제한
+            if (hp >= 0 && hp <= maxHp)
+                hp = value;
+        }
+    }
 
-    // 플레이어의 스태미나와 최대 스태미나
-    public byte stamina;
-    public byte maxStamina;
+    // 플레이어의 최대 생명력
+    private byte maxHp;
+    public byte MaxHp
+    {
+        get { return maxHp; }
+        set
+        {
+            maxHp = value;
+        }
+    }
 
-    // 플레이어의 포만감과 최대 포만감
-    public byte satiety;
+    // 플레이어의 스태미나
+    private byte stamina;
+    public byte Stamina
+    {
+        get { return stamina; }
+        set
+        {
+            // 스태미나 값 범위 제한
+            if(stamina >= 0 && stamina <= maxStamina)
+                stamina = value;
+        }
+    }
+
+    // 플레이어의 최대 스태미나
+    private byte maxStamina;
+    public byte MaxStamina
+    {
+        get { return maxStamina; }
+        set
+        {
+            maxStamina = value;
+        }
+    }
+
+    // 플레이어의 포만감
+    private byte satiety;
+    public byte Satiety
+    {
+        get { return satiety; }
+        set
+        {
+            if (satiety >= 0 && satiety <= maxSatiety)
+                satiety = value;
+        }
+    }
+    
+    // 플레이어의 최대 포만감
     private byte maxSatiety = 100;
 
-    // 플레이어의 수분과 최대 수분
-    public byte quench;
+    // 플레이어의 수분
+    private byte quench;
+    public byte Quench
+    {
+        get { return quench; }
+        set
+        {
+            if(quench >= 0 &&  quench <= maxQuench)
+                quench = value;
+        }
+    }
+    
+    // 플레이어의 최대 수분
     private byte maxQuench = 100;
 
     // 플레이어의 현재 체온, 최저 체온, 최대 체온
-    public byte currrentTemperature;
+    private byte currentTemperature;
+    public byte CurrentTemperature
+    {
+        get { return currentTemperature; }
+        set
+        {
+            if(currentTemperature >= minTemperature && currentTemperature <= maxTemperature)
+                currentTemperature = value;
+        }
+    }
+
+    // 플레이어의 최저 체온
     private byte minTemperature = 0;
+    // 플레이어의 최대 체온
     private byte maxTemperature = 2;
+
+    // 플레이어가 바라보는 방향
+    // 0: 남쪽, 1:서쪽, 2: 북쪽 3: 동쪽
+    private byte direction;
+    public byte Direction
+    {
+        get { return direction; }
+        set
+        {
+            if(direction >= 0 && direction <= 3)
+                direction = value;
+        }
+    }
+
+    // 플레이어 위치
+    private Vector3 vector;
+    public Vector3 Vector
+    {
+        get { return vector; }
+        set { vector = value; }
+    }
 
     // 플레이어의 현재 이동속도, 걷기 속도, 달리기 속도
     private float speed = 0;
@@ -72,8 +208,7 @@ public class PlayerController : MonoBehaviour
 
     // 플레이어의 중력 관할
     private Rigidbody2D rb;
-    // 플레이어 위치를 벡터로 받아 관할
-    private Vector3 vector;
+
     // 플레이어의 애니메이션을 관할
     private Animator animator;
 
@@ -93,7 +228,6 @@ public class PlayerController : MonoBehaviour
                 // 시간 정지
                 Time.timeScale = 0;
             }
-
         }
 
         else
@@ -108,7 +242,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // 게임으로 돌아가는 버튼
+    /// <summary>
+    /// 게임으로 돌아가는 버튼
+    /// </summary>
     public void Pause_BackToGame()
     {
         pausePanel.gameObject.SetActive(true);
@@ -117,55 +253,78 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    // 설정 조작으로 들어가는 버튼
+    /// <summary>
+    /// 설정 조작으로 들어가는 버튼
+    /// </summary>
     public void Pause_Setting()
     {
         
     }
 
-    // 게임을 저장하는 버튼
+    /// <summary>
+    /// 게임을 저장하는 버튼
+    /// </summary>
     public void Pause_SaveGame() => Save();
     
-    // 게임을 저장하고 종료해 타이틀 화면으로 가는 버튼
+    /// <summary>
+    /// 게임을 저장하고 종료해 타이틀 화면으로 가는 버튼
+    /// </summary>
     public void Pause_SaveAndExitGame()
     {
         Save();
         SceneManager.LoadScene("_Title");
     }
 
+    /// <summary>
+    /// 저장한 데이터를 게임 내로 불러오기
+    /// </summary>
     public void Load()
     {
         string[] jsonData = new string[4];
         jsonData[currentSaveNum]
-            = File.ReadAllText(Application.persistentDataPath + "/SaveData" + $"{currentSaveNum}" + ".txt");
+            = File.ReadAllText(Application.persistentDataPath + "/SaveData" + $"{currentSaveNum}" + ".json");
         saveData[currentSaveNum] = JsonUtility.FromJson<SaveData>(jsonData[currentSaveNum]);
+
+        // 불러올 데이터들
+        Level = saveData[currentSaveNum].level;
+        PlayerJob = saveData[currentSaveNum].job;
+        Exp = saveData[currentSaveNum].exp;
+        MaxExp = saveData[currentSaveNum].maxExp;
+        Hp = saveData[currentSaveNum].hp;
+        MaxHp = saveData[currentSaveNum].maxHp;
+        Stamina = saveData[currentSaveNum].stamina;
+        MaxStamina = saveData[currentSaveNum].maxStamina;
+        Satiety = saveData[currentSaveNum].satiety;
+        Quench = saveData[currentSaveNum].quench;
+        CurrentTemperature = saveData[currentSaveNum].currentTemperature;
+        Direction = saveData[currentSaveNum].direction;
+        Vector = saveData[currentSaveNum].playerLocation;
     }
 
-    // 문자열로 저장된 데이터를 플레이어의 변수에 각각 대입
-    
-    public void LoadedInfoInput()
-    {
-        level = Convert.ToByte(saveData[currentSaveNum].level);
-        playerJob = saveData[currentSaveNum].job;
-        exp = Convert.ToUInt16(saveData[currentSaveNum].exp);
-        maxExp = Convert.ToUInt16(saveData[currentSaveNum].maxExp);
-        hp = Convert.ToByte(saveData[currentSaveNum].hp);
-        maxHp = Convert.ToByte(saveData[currentSaveNum].maxHp);
-        stamina = Convert.ToByte(saveData[currentSaveNum].stamina);
-        maxStamina = Convert.ToByte(saveData[currrentTemperature].maxStamina);
-        satiety = Convert.ToByte(saveData[currentSaveNum].satiety);
-        quench = Convert.ToByte(saveData[currentSaveNum].quench);
-        currentSaveNum = Convert.ToSByte(saveData[currentSaveNum].currentTemperature);
-
-    }
-
+    /// <summary>
+    /// 게임 내 데이터를 파일로 저장하기
+    /// </summary>
     public void Save()
     {
+        saveData[currentSaveNum].level = Level;
+        saveData[currentSaveNum].job = PlayerJob;
+        saveData[currentSaveNum].exp = Exp;
+        saveData[currentSaveNum].maxExp = MaxExp;
+        saveData[currentSaveNum].hp = Hp;
+        saveData[currentSaveNum].maxHp = MaxHp;
+        saveData[currentSaveNum].stamina = Stamina;
+        saveData[currentSaveNum].maxStamina = MaxStamina;
+        saveData[currentSaveNum].satiety = Satiety;
+        saveData[currentSaveNum].quench = Quench;
+        saveData[currentSaveNum].currentTemperature = CurrentTemperature;
+        saveData[currentSaveNum].direction = Direction;
+        saveData[currentSaveNum].playerLocation = Vector;
+        
         string[] jsonData = new string[4];
         jsonData[currentSaveNum]
             = JsonUtility.ToJson(saveData);
         File.WriteAllText
-            (Application.persistentDataPath + "/SaveData" + $"{currentSaveNum}" + ".txt", jsonData[currentSaveNum]);
+            (Application.persistentDataPath + "/SaveData" + $"{currentSaveNum}" + ".json", jsonData[currentSaveNum]);
     }
     
     // 플레이어 변수에 저장된 값을 UI에 표시
@@ -185,8 +344,10 @@ public class PlayerController : MonoBehaviour
     // 플레이어 이동 시 애니메이션을 재생하는 파라미터를 조작하는 함수
     void UpdateAnimationAndMove()
     {
-        if (vector != Vector3.zero)
+        if (Vector != Vector3.zero)
         {
+            
+            
             // 왼쪽 Alt 키를 누르면서 방향키로 조작하면 달려가며 누르지 않은 경우 걷는다.
             speed = Input.GetKey(KeyCode.LeftAlt) ? runSpeed : walkSpeed;
             MoveCharacter();
@@ -218,21 +379,20 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         
-
         Load();
-        
-        LoadedInfoInput();
         UIActivate();
     }
 
     // Update is called once per frame
     void Update()
     {
-        vector = Vector3.zero;
+        
         // 좌우 방향키를 눌러 좌우로 이동 가능
         vector.x = Input.GetAxis("Horizontal");
         // 상하 방향키를 눌러 상하로 이동 가능
         vector.y = Input.GetAxis("Vertical");
+
+        //Vector = this.transform.position;
         
         UIActivate();
         UpdateAnimationAndMove();

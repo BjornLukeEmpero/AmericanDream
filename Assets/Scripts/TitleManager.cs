@@ -8,34 +8,41 @@ using System.IO;
 using UnityEngine.UI;
 using TMPro;
 
-// 저장할 데이터
+/// <summary>
+/// 저장할 데이터
+/// </summary>
 [System.Serializable]
 public class SaveData
 {
     // 레벨
-    public string level;
+    public byte level;
     // 직업
     public string job;
     // 경험치
-    public string exp;
+    public ushort exp;
     // 최대 경험치
-    public string maxExp;
+    public ushort maxExp;
     // 생명력, 최대 생명력
-    public string hp;
-    public string maxHp;
+    public byte hp;
+    public byte maxHp;
     // 스태미나, 최대 스태미나
-    public string stamina;
-    public string maxStamina;
+    public byte stamina;
+    public byte maxStamina;
     // 포만감
-    public string satiety;
+    public byte satiety;
     // 수분
-    public string quench;
+    public byte quench;
     // 현재 체온
-    public string currentTemperature;
+    public byte currentTemperature;
+    // 플레이어가 바라보는 방향
+    // 0: 남쪽, 1:서쪽, 2: 북쪽 3: 동쪽
+    public byte direction;
+    // 플레이어 위치
+    public Vector3 playerLocation;
 }
 
 /// <summary>
-/// 
+/// 타이틀 창 관할
 /// </summary>
 /// <param name="clickStartDlgSaveBtn">현재 선택한 버튼</param>
 public class TitleManager : MonoBehaviour
@@ -51,36 +58,45 @@ public class TitleManager : MonoBehaviour
     // 세이브파일 관련 정보를 저장하는 곳
     public TextMeshProUGUI[] saveDataInfo = new TextMeshProUGUI[4];
 
-
-    // 게임 데이터 초기화
+    /// <summary>
+    /// 게임 데이터 초기화
+    /// </summary>
     public void ResetSave()
     {
-        saveData[clickStartDlgSaveBtn].level = "1";
+        saveData[clickStartDlgSaveBtn].level = 1;
         saveData[clickStartDlgSaveBtn].job = "무직";
-        saveData[clickStartDlgSaveBtn].exp = "0";
-        saveData[clickStartDlgSaveBtn].maxExp = "100";
-        saveData[clickStartDlgSaveBtn].hp = "100";
-        saveData[clickStartDlgSaveBtn].maxHp = "100";
-        saveData[clickStartDlgSaveBtn].stamina = "100";
-        saveData[clickStartDlgSaveBtn].maxStamina = "100";
-        saveData[clickStartDlgSaveBtn].satiety = "100";
-        saveData[clickStartDlgSaveBtn].quench = "100";
-        saveData[clickStartDlgSaveBtn].currentTemperature = "1";
+        saveData[clickStartDlgSaveBtn].exp = 0;
+        saveData[clickStartDlgSaveBtn].maxExp = 1000;
+        saveData[clickStartDlgSaveBtn].hp = 100;
+        saveData[clickStartDlgSaveBtn].maxHp = 100;
+        saveData[clickStartDlgSaveBtn].stamina = 100;
+        saveData[clickStartDlgSaveBtn].maxStamina = 100;
+        saveData[clickStartDlgSaveBtn].satiety = 100;
+        saveData[clickStartDlgSaveBtn].quench = 100;
+        saveData[clickStartDlgSaveBtn].currentTemperature = 1;
+        saveData[clickStartDlgSaveBtn].direction = 0;
+        saveData[clickStartDlgSaveBtn].playerLocation[0] = 0;
+        saveData[clickStartDlgSaveBtn].playerLocation[1] = 0;
+        saveData[clickStartDlgSaveBtn].playerLocation[2] = 0;
     }
-    
-    // 게임 데이터 저장
+
+    /// <summary>
+    /// 게임 데이터 저장
+    /// </summary>
     public void Save()
     {
         string[] jsonData = new string[4];
         jsonData[clickStartDlgSaveBtn] = JsonUtility.ToJson(saveData[clickStartDlgSaveBtn]);
-        File.WriteAllText(Application.persistentDataPath + "/SaveData" + $"{clickStartDlgSaveBtn}" + ".txt", jsonData[clickStartDlgSaveBtn]);
+        File.WriteAllText(Application.persistentDataPath + "/SaveData" + $"{clickStartDlgSaveBtn}" + ".json", jsonData[clickStartDlgSaveBtn]);
     }
 
-    // 저장한 게임 데이터 불러오기
+    /// <summary>
+    /// 저장한 게임 데이터 불러오기
+    /// </summary>
     public void Load()
     { 
         string[] jsonData = new string[4];
-        jsonData[clickStartDlgSaveBtn] = File.ReadAllText(Application.persistentDataPath + "/SaveData" + $"{clickStartDlgSaveBtn}" + ".txt");
+        jsonData[clickStartDlgSaveBtn] = File.ReadAllText(Application.persistentDataPath + "/SaveData" + $"{clickStartDlgSaveBtn}" + ".json");
         saveData[clickStartDlgSaveBtn] = JsonUtility.FromJson<SaveData>(jsonData[clickStartDlgSaveBtn]);
     }
 
@@ -89,27 +105,41 @@ public class TitleManager : MonoBehaviour
     /// </summary>
     public void Delete()
     {
-        File.Delete(Application.persistentDataPath + "/SaveData" + $"{clickStartDlgSaveBtn}" + ".txt");
+        File.Delete(Application.persistentDataPath + "/SaveData" + $"{clickStartDlgSaveBtn}" + ".json");
+        // 세이브 파일명을 되돌려 비었다고 표시
+        saveDataInfo[clickStartDlgSaveBtn].text = "Empty " + $"{clickStartDlgSaveBtn + 1}";
         messageBox[3].gameObject.SetActive(false);
     }
 
 
-    // 게임 시작 창 띄우기
+    /// <summary>
+    /// 게임 시작 창 띄우기
+    /// </summary>
     public void GameStart() => StartDlg.gameObject.SetActive(true);
-    
-    // 세이브 파일 1 클릭 시
+
+    /// <summary>
+    /// 세이브 파일 1 클릭 시
+    /// </summary>
     public void StartDlgSaveBtn1() => clickStartDlgSaveBtn = 0;
 
-    // 세이브 파일 2 클릭 시
+    /// <summary>
+    /// 세이브 파일 2 클릭 시
+    /// </summary>
     public void StartDlgSaveBtn2() => clickStartDlgSaveBtn = 1;
 
-    // 세이브 파일 3 클릭 시
+    /// <summary>
+    /// 세이브 파일 3 클릭 시
+    /// </summary>
     public void StartDlgSaveBtn3() => clickStartDlgSaveBtn = 2;
 
-    // 세이브 파일 4 클릭 시
+    /// <summary>
+    /// 세이브 파일 4 클릭 시
+    /// </summary>
     public void StartDlgSaveBtn4() => clickStartDlgSaveBtn = 3;
 
-    // 세이브파일 선택 창 이어하기
+    /// <summary>
+    /// 세이브파일 선택 창 이어하기
+    /// </summary>
     public void StartDlgLoadGame()
     {
         // 선택한 창에 따라 서로 다른 세이브 파일을 불러온다
@@ -117,7 +147,7 @@ public class TitleManager : MonoBehaviour
         switch(clickStartDlgSaveBtn)
         {
             case 0:
-                if(!File.Exists(Application.persistentDataPath + "/SaveData0.txt"))
+                if(!File.Exists(Application.persistentDataPath + "/SaveData0.json"))
                     messageBox[1].gameObject.SetActive(true);
                 else
                 {
@@ -126,7 +156,7 @@ public class TitleManager : MonoBehaviour
                 }
                 break;
             case 1:
-                if (!File.Exists(Application.persistentDataPath + "/SaveData1.txt"))
+                if (!File.Exists(Application.persistentDataPath + "/SaveData1.json"))
                     messageBox[1].gameObject.SetActive(true);
                 else
                 {
@@ -135,7 +165,7 @@ public class TitleManager : MonoBehaviour
                 }
                 break;
             case 2:
-                if (!File.Exists(Application.persistentDataPath + "/SaveData2.txt"))
+                if (!File.Exists(Application.persistentDataPath + "/SaveData2.json"))
                     messageBox[1].gameObject.SetActive(true);
                 else
                 {
@@ -144,7 +174,7 @@ public class TitleManager : MonoBehaviour
                 }
                 break;
             case 3:
-                if (!File.Exists(Application.persistentDataPath + "/SaveData3.txt"))
+                if (!File.Exists(Application.persistentDataPath + "/SaveData3.json"))
                     messageBox[1].gameObject.SetActive(true);
                 else
                 {
@@ -158,7 +188,9 @@ public class TitleManager : MonoBehaviour
         }
     }
 
-    // 세이브파일 선택 창 새로하기
+    /// <summary>
+    /// 세이브파일 선택 창 새로하기
+    /// </summary>
     public void StartDlgNewGame()
     {
         // 선택한 창에 따라 서로 다른 세이브 파일을 새로 시작한다.
@@ -167,7 +199,7 @@ public class TitleManager : MonoBehaviour
         switch (clickStartDlgSaveBtn)
         {
             case 0:
-                if (!File.Exists(Application.persistentDataPath + "/SaveData0.txt"))
+                if (!File.Exists(Application.persistentDataPath + "/SaveData0.json"))
                 {
                     ResetSave();
                     Save();
@@ -178,7 +210,7 @@ public class TitleManager : MonoBehaviour
                     messageBox[2].gameObject.SetActive(true);
                 break;
             case 1:
-                if (!File.Exists(Application.persistentDataPath + "/SaveData1.txt"))
+                if (!File.Exists(Application.persistentDataPath + "/SaveData1.json"))
                 {
                     ResetSave();
                     Save();
@@ -189,7 +221,7 @@ public class TitleManager : MonoBehaviour
                     messageBox[2].gameObject.SetActive(true);
                 break;
             case 2:
-                if (!File.Exists(Application.persistentDataPath + "/SaveData2.txt"))
+                if (!File.Exists(Application.persistentDataPath + "/SaveData2.json"))
                 {
                     ResetSave();
                     Save();
@@ -200,7 +232,7 @@ public class TitleManager : MonoBehaviour
                     messageBox[2].gameObject.SetActive(true);
                 break;
             case 3:
-                if (!File.Exists(Application.persistentDataPath + "/SaveData3.txt"))
+                if (!File.Exists(Application.persistentDataPath + "/SaveData3.json"))
                 {
                     ResetSave();
                     Save();
@@ -224,28 +256,28 @@ public class TitleManager : MonoBehaviour
         switch (clickStartDlgSaveBtn)
         {
             case 0:
-                if(!File.Exists(Application.persistentDataPath + "/SaveData0.txt"))
+                if(!File.Exists(Application.persistentDataPath + "/SaveData0.json"))
                     messageBox[1].gameObject.SetActive(true);
                 else
                     messageBox[3].gameObject.SetActive(true);
                 break;
 
             case 1:
-                if (!File.Exists(Application.persistentDataPath + "/SaveData1.txt"))
+                if (!File.Exists(Application.persistentDataPath + "/SaveData1.json"))
                     messageBox[1].gameObject.SetActive(true);
                 else
                     messageBox[3].gameObject.SetActive(true);
                 break;
 
             case 2:
-                if (!File.Exists(Application.persistentDataPath + "/SaveData2.txt"))
+                if (!File.Exists(Application.persistentDataPath + "/SaveData2.json"))
                     messageBox[1].gameObject.SetActive(true);
                 else
                     messageBox[3].gameObject.SetActive(true);
                 break;
 
             case 3:
-                if (!File.Exists(Application.persistentDataPath + "/SaveData3.txt"))
+                if (!File.Exists(Application.persistentDataPath + "/SaveData3.json"))
                     messageBox[1].gameObject.SetActive(true);
                 else
                     messageBox[3].gameObject.SetActive(true);
@@ -256,10 +288,14 @@ public class TitleManager : MonoBehaviour
         }
     }
 
-    // 세이브파일 선택 창 닫기
+    /// <summary>
+    /// 세이브파일 선택 창 닫기
+    /// </summary>
     public void StartDlgClose() => StartDlg.gameObject.SetActive(false);
 
-    // 메시지 박스 닫기
+    /// <summary>
+    /// 메시지 박스 닫기
+    /// </summary>
     public void MsgBoxClose()
     {
         // 메시지 창의 모든 닫기, 취소 버튼으로 창 닫기 기능 활성화
@@ -269,7 +305,9 @@ public class TitleManager : MonoBehaviour
         }
     }
 
-    // 메시지 박스로 게임 새로 시작하기
+    /// <summary>
+    /// 메시지 박스로 게임 새로 시작하기
+    /// </summary>
     public void MsgBoxNewStart()
     {
         ResetSave();
@@ -277,7 +315,9 @@ public class TitleManager : MonoBehaviour
         SceneManager.LoadScene("PlayingTown");
     }
 
-    // 
+    /// <summary>
+    /// 게임 종료
+    /// </summary>    
     public void Exit()
     {
 // 유니티 에디터에서 게임을 종료한다
