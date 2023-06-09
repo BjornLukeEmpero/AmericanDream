@@ -322,7 +322,7 @@ public class PlayerController : MonoBehaviour
         
         string[] jsonData = new string[4];
         jsonData[currentSaveNum]
-            = JsonUtility.ToJson(saveData);
+            = JsonUtility.ToJson(saveData[currentSaveNum]);
         File.WriteAllText
             (Application.persistentDataPath + "/SaveData" + $"{currentSaveNum}" + ".json", jsonData[currentSaveNum]);
     }
