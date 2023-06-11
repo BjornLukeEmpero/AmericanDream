@@ -1,4 +1,4 @@
-// 작성자: 이재윤, 최근작성일자: 2023-06-01
+// 작성자: 이재윤
 
 using System.Collections;
 using System.Collections.Generic;

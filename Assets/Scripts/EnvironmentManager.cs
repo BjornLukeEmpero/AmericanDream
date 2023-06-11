@@ -1,4 +1,4 @@
-// 작성자: 이재윤, 간접 기여자: 신성범 최근작성일자: 2023-06-04
+// 작성자: 이재윤, 간접 기여자: 신성범
 
 using System.Collections;
 using System.Collections.Generic;
@@ -16,7 +16,9 @@ public class EnvironmentManager : MonoBehaviour
     // 현재 지역의 배경음악
     public AudioClip audioClip;
     // 현재 지역의 온도
-    public sbyte temperature;
+    public byte temperature = new byte();
+    // 플레이어 컴포넌트
+    private PlayerController playerController;
     // 카메라 컴포넌트
     private CameraMovement camera;
 
@@ -25,8 +27,10 @@ public class EnvironmentManager : MonoBehaviour
     void Start()
     {
         // 카메라에 메인 카메라의 컴포넌트 연결
+        playerController = GetComponent<PlayerController>();
         camera = Camera.main.GetComponent<CameraMovement>();
         audioSource = GetComponent<AudioSource>();
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -38,11 +42,12 @@ public class EnvironmentManager : MonoBehaviour
             camera.minPosition = minPos;
             // 카메라의 최대 좌표 범위를 미리 저장된 값으로 설정
             camera.maxPosition = maxPos;
-            
             // 재생할 배경음악을 가져온다
             audioSource.clip = audioClip;
             // 가져온 배경음악을 재생한다
             audioSource.Play();
+            
+            
         }
     }
 

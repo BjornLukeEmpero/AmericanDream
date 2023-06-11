@@ -7,17 +7,17 @@ public class Item_Weapon : Item
 {
     public string usingBullet;
 
-    public sbyte bulletCnt;
+    public byte bulletCnt;
 
-    public sbyte maxBulletCnt;
+    public byte maxBulletCnt;
 
     public float reloadTime;
 
     public float fireRate;
     
-    public Item_Weapon(string itemIndex, string itemName, string itemNameKor, ushort buyPrice, ushort sellPrice, byte maxStack, string itemExplanation,
-        string usingBullet, sbyte bulletCnt, sbyte maxBulletCnt, float reloadTime, float fireRate) 
-        : base(itemIndex, itemName, itemNameKor, buyPrice, sellPrice, maxStack, itemExplanation)
+    public Item_Weapon(byte itemIndex, string itemName, string itemNameKor, ushort buyPrice, ushort sellPrice, byte stack, byte maxStack, string itemExplanation,
+        string usingBullet, byte bulletCnt, byte maxBulletCnt, float reloadTime, float fireRate) 
+        : base(itemIndex, itemName, itemNameKor, buyPrice, sellPrice, stack, maxStack, itemExplanation)
     {
         this.usingBullet = usingBullet;
         this.bulletCnt = bulletCnt;
@@ -29,6 +29,7 @@ public class Item_Weapon : Item
     // Start is called before the first frame update
     void Start()
     {
+        
         
     }
 

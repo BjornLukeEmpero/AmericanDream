@@ -1,4 +1,4 @@
-// 작성자: 이재윤, 작성일자: 2023-06-01
+// 작성자: 이재윤
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,6 +18,8 @@ using Unity.VisualScripting;
 [System.Serializable]
 public class PlayerController : MonoBehaviour
 {
+    // 플레이어 능력치
+    #region
     // 플레이어 레벨
     private byte level = 1;
     public byte Level
@@ -102,6 +104,11 @@ public class PlayerController : MonoBehaviour
             // 스태미나 값 범위 제한
             if(stamina >= 0 && stamina <= maxStamina)
                 stamina = value;
+
+            if(stamina > 0)
+            {
+                
+            }
         }
     }
 
@@ -115,6 +122,11 @@ public class PlayerController : MonoBehaviour
             maxStamina = value;
         }
     }
+
+    // 플레이어의 스태미나가 변하는 시간
+    private float changeStaminaTime;
+    // 스태미나 감소 여부
+    private bool staminaUsed;
 
     // 플레이어의 포만감
     private byte satiety;
@@ -175,6 +187,7 @@ public class PlayerController : MonoBehaviour
                 direction = value;
         }
     }
+    #endregion
 
     // 플레이어 위치
     private Vector3 vector;
@@ -186,8 +199,8 @@ public class PlayerController : MonoBehaviour
 
     // 플레이어의 현재 이동속도, 걷기 속도, 달리기 속도
     private float speed = 0;
-    private float walkSpeed = 120;
-    private float runSpeed = 240;
+    private float walkSpeed = 15;
+    private float runSpeed = 30;
 
     // 일시정지 상태 알림
     private bool pauseState = false;
@@ -195,16 +208,18 @@ public class PlayerController : MonoBehaviour
     // 플레이어 상태 UI
     // 0: 레벨, 1: 직업, 2: 경험치, 3: 생명력, 4: 스태미나, 5: 포만감, 6: 수분
     public TextMeshProUGUI[] statUI = new TextMeshProUGUI[7];
+    // 0: 경험치, 1: 생명력, 2: 스태미나, 3: 포만감, 4: 수분, 5:체온
+    public Slider[] barUI = new Slider[6];
 
     // 일시정지 패널    
     public Image pausePanel;
-
-    
     
     // 세이브 파일 저장 변수
     public SaveData[] saveData = new SaveData[4];
     // 현재 세이브 파일의 위치
     public sbyte currentSaveNum;
+
+    private EnvironmentManager environmentManager;
 
     // 플레이어의 중력 관할
     private Rigidbody2D rb;
@@ -212,8 +227,54 @@ public class PlayerController : MonoBehaviour
     // 플레이어의 애니메이션을 관할
     private Animator animator;
 
-    private AudioManager theAudio;
+    public void RecoverStaminaTime()
+    {
+        if (staminaUsed)
+        {
+            if (changeStaminaTime < 1)
+                changeStaminaTime++;
+            else
+                staminaUsed = false;
+        }
+    }
 
+    public void IncreaseStamina(byte addStamina)
+    {
+        if(!staminaUsed && Stamina < MaxStamina && !Input.GetKey(KeyCode.LeftAlt))
+        {
+            Stamina += addStamina;
+        }
+    }
+
+    public void DecreaseStamina(byte subStamina)
+    {
+        staminaUsed = true;
+        changeStaminaTime = 0;
+
+        if(Stamina - subStamina > 0)
+            Stamina -= subStamina;
+        else
+            Stamina = 0;
+    }
+
+    public void IncreaseTemperature()
+    {
+        if(CurrentTemperature < environmentManager.temperature)
+        {
+            CurrentTemperature = environmentManager.temperature;
+        }
+    }
+
+    public void DecreaseTemperature()
+    {
+        if(CurrentTemperature > environmentManager.temperature) 
+        {
+            CurrentTemperature = environmentManager.temperature;
+        }
+    }
+
+    // 일시정지 기능
+    #region
     /// <summary>
     /// 일시정지 함수
     /// </summary>
@@ -274,7 +335,10 @@ public class PlayerController : MonoBehaviour
         Save();
         SceneManager.LoadScene("_Title");
     }
+    #endregion
 
+    // 데이터 저장과 불러오기
+    #region
     /// <summary>
     /// 저장한 데이터를 게임 내로 불러오기
     /// </summary>
@@ -326,7 +390,8 @@ public class PlayerController : MonoBehaviour
         File.WriteAllText
             (Application.persistentDataPath + "/SaveData" + $"{currentSaveNum}" + ".json", jsonData[currentSaveNum]);
     }
-    
+    #endregion
+
     // 플레이어 변수에 저장된 값을 UI에 표시
     public void UIActivate()
     {
@@ -338,7 +403,23 @@ public class PlayerController : MonoBehaviour
         statUI[3].text = "HP: " + $"{hp}" + "/" + $"{maxHp}";
         statUI[4].text = "ST: " + $"{stamina}" + "/" + $"{maxStamina}";
         statUI[5].text = "SA: " + $"{satiety}" + "/" + $"{maxSatiety}";
-        statUI[6].text = "Lv: " + $"{quench}" + "/" + $"{maxQuench}";   
+        statUI[6].text = "QU: " + $"{quench}" + "/" + $"{maxQuench}";
+
+        // 0: 최대 경험치, 1: 최대 생명력, 2: 최대 스태미나, 3: 최대 포만감, 4: 최대 수분, 5: 최대 체온
+        barUI[0].maxValue = MaxExp;
+        barUI[1].maxValue = MaxHp;
+        barUI[2].maxValue = MaxStamina;
+        barUI[3].maxValue = maxSatiety;
+        barUI[4].maxValue = maxQuench;
+        barUI[5].maxValue = maxTemperature;
+
+        // 0: 경험치, 1: 생명력, 2: 스태미나, 3: 포만감, 4: 수분, 5: 현재 체온
+        barUI[0].value = Exp;
+        barUI[1].value = Hp;
+        barUI[2].value = Stamina;
+        barUI[3].value = Satiety;
+        barUI[4].value = Quench;
+        barUI[5].value = currentTemperature;
     }
 
     // 플레이어 이동 시 애니메이션을 재생하는 파라미터를 조작하는 함수
@@ -346,10 +427,22 @@ public class PlayerController : MonoBehaviour
     {
         if (Vector != Vector3.zero)
         {
-            
+            // Alt키가 눌려있고 스태미나가 남아있다면
+            if (Input.GetKey(KeyCode.LeftAlt) && Stamina > 0)
+            {
+                // 달린다
+                speed = runSpeed;
+                // 스태미나를 1씩 감소시킨다.
+                DecreaseStamina(1);
+            }
+            else
+            {
+                // 걷는다
+                speed = walkSpeed;
+            }
             
             // 왼쪽 Alt 키를 누르면서 방향키로 조작하면 달려가며 누르지 않은 경우 걷는다.
-            speed = Input.GetKey(KeyCode.LeftAlt) ? runSpeed : walkSpeed;
+            // speed = Input.GetKey(KeyCode.LeftAlt) && Stamina != 0 ? runSpeed : walkSpeed;
             MoveCharacter();
             animator.SetFloat("moveX", vector.x);
             animator.SetFloat("moveY", vector.y);
@@ -378,24 +471,31 @@ public class PlayerController : MonoBehaviour
         // 
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        environmentManager = GetComponent<EnvironmentManager>();
         
         Load();
+        //UIActivate();
+    }
+
+    private void Update()
+    {
         UIActivate();
+        Pause();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
         // 좌우 방향키를 눌러 좌우로 이동 가능
         vector.x = Input.GetAxis("Horizontal");
         // 상하 방향키를 눌러 상하로 이동 가능
         vector.y = Input.GetAxis("Vertical");
 
         //Vector = this.transform.position;
-        
-        UIActivate();
+        RecoverStaminaTime();
+        IncreaseStamina(1);
+
         UpdateAnimationAndMove();
-        Pause();
+        
     }
 }
