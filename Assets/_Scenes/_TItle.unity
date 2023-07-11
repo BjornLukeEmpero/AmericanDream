@@ -207,8 +207,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1588696876}
-        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+      - m_Target: {fileID: 1588696877}
+        m_TargetAssemblyTypeName: TitleUIManager, Assembly-CSharp
         m_MethodName: MsgBoxClose
         m_Mode: 1
         m_Arguments:
@@ -341,8 +341,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1588696876}
-        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+      - m_Target: {fileID: 1588696877}
+        m_TargetAssemblyTypeName: TitleUIManager, Assembly-CSharp
         m_MethodName: StartDlgSaveBtn3
         m_Mode: 1
         m_Arguments:
@@ -698,8 +698,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1588696876}
-        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+      - m_Target: {fileID: 1588696877}
+        m_TargetAssemblyTypeName: TitleUIManager, Assembly-CSharp
         m_MethodName: MsgBoxNewStart
         m_Mode: 1
         m_Arguments:
@@ -883,6 +883,100 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 195037699}
   m_CullTransparentMesh: 1
+--- !u!1 &222360728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 222360730}
+  - component: {fileID: 222360729}
+  m_Layer: 0
+  m_Name: DataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &222360729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222360728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5f623b5bbac85146b52a7eec29b7d8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveData:
+  - level: 0
+    job: 
+    exp: 0
+    maxExp: 0
+    hp: 0
+    maxHp: 0
+    stamina: 0
+    maxStamina: 0
+    satiety: 0
+    quench: 0
+    currentTemperature: 0
+    direction: 0
+  - level: 0
+    job: 
+    exp: 0
+    maxExp: 0
+    hp: 0
+    maxHp: 0
+    stamina: 0
+    maxStamina: 0
+    satiety: 0
+    quench: 0
+    currentTemperature: 0
+    direction: 0
+  - level: 0
+    job: 
+    exp: 0
+    maxExp: 0
+    hp: 0
+    maxHp: 0
+    stamina: 0
+    maxStamina: 0
+    satiety: 0
+    quench: 0
+    currentTemperature: 0
+    direction: 0
+  - level: 0
+    job: 
+    exp: 0
+    maxExp: 0
+    hp: 0
+    maxHp: 0
+    stamina: 0
+    maxStamina: 0
+    satiety: 0
+    quench: 0
+    currentTemperature: 0
+    direction: 0
+  clickSaveBtn: -1
+--- !u!4 &222360730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222360728}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 362.5, y: 204, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &228593003
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,8 +1061,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1588696876}
-        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+      - m_Target: {fileID: 1588696877}
+        m_TargetAssemblyTypeName: TitleUIManager, Assembly-CSharp
         m_MethodName: StartDlgClose
         m_Mode: 1
         m_Arguments:
@@ -1455,8 +1549,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1588696876}
-        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+      - m_Target: {fileID: 1588696877}
+        m_TargetAssemblyTypeName: TitleUIManager, Assembly-CSharp
         m_MethodName: StartDlgDeleteGame
         m_Mode: 1
         m_Arguments:
@@ -1860,8 +1954,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1588696876}
-        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+      - m_Target: {fileID: 1588696877}
+        m_TargetAssemblyTypeName: TitleUIManager, Assembly-CSharp
         m_MethodName: StartDlgNewGame
         m_Mode: 1
         m_Arguments:
@@ -1994,8 +2088,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1588696876}
-        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+      - m_Target: {fileID: 1588696877}
+        m_TargetAssemblyTypeName: TitleUIManager, Assembly-CSharp
         m_MethodName: MsgBoxClose
         m_Mode: 1
         m_Arguments:
@@ -2869,8 +2963,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1588696876}
-        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+      - m_Target: {fileID: 1588696877}
+        m_TargetAssemblyTypeName: TitleUIManager, Assembly-CSharp
         m_MethodName: GameStart
         m_Mode: 1
         m_Arguments:
@@ -3003,8 +3097,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1588696876}
-        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+      - m_Target: {fileID: 1588696877}
+        m_TargetAssemblyTypeName: TitleUIManager, Assembly-CSharp
         m_MethodName: StartDlgSaveBtn1
         m_Mode: 1
         m_Arguments:
@@ -3137,8 +3231,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1588696876}
-        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+      - m_Target: {fileID: 1588696877}
+        m_TargetAssemblyTypeName: TitleUIManager, Assembly-CSharp
         m_MethodName: StartDlgLoadGame
         m_Mode: 1
         m_Arguments:
@@ -3875,8 +3969,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1588696876}
-        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+      - m_Target: {fileID: 1588696877}
+        m_TargetAssemblyTypeName: TitleUIManager, Assembly-CSharp
         m_MethodName: MsgBoxClose
         m_Mode: 1
         m_Arguments:
@@ -4009,8 +4103,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1588696876}
-        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+      - m_Target: {fileID: 1588696877}
+        m_TargetAssemblyTypeName: TitleUIManager, Assembly-CSharp
         m_MethodName: Exit
         m_Mode: 1
         m_Arguments:
@@ -4143,8 +4237,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1588696876}
-        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+      - m_Target: {fileID: 1588696877}
+        m_TargetAssemblyTypeName: TitleUIManager, Assembly-CSharp
         m_MethodName: StartDlgSaveBtn2
         m_Mode: 1
         m_Arguments:
@@ -4548,8 +4642,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1588696876}
-        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+      - m_Target: {fileID: 222360729}
+        m_TargetAssemblyTypeName: DataManager, Assembly-CSharp
         m_MethodName: Delete
         m_Mode: 1
         m_Arguments:
@@ -4682,8 +4776,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1588696876}
-        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+      - m_Target: {fileID: 1588696877}
+        m_TargetAssemblyTypeName: TitleUIManager, Assembly-CSharp
         m_MethodName: MsgBoxClose
         m_Mode: 1
         m_Arguments:
@@ -4895,8 +4989,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1588696876}
-        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+      - m_Target: {fileID: 1588696877}
+        m_TargetAssemblyTypeName: TitleUIManager, Assembly-CSharp
         m_MethodName: StartDlgSaveBtn4
         m_Mode: 1
         m_Arguments:
@@ -5076,7 +5170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1588696875}
-  - component: {fileID: 1588696876}
+  - component: {fileID: 1588696877}
   m_Layer: 0
   m_Name: TitleManager
   m_TagString: GameController
@@ -5099,7 +5193,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1588696876
+--- !u!114 &1588696877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5108,7 +5202,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1588696874}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61b34f123b5a72b41baa1a82eb970fd1, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ddc83f472f1901469abaaf829c69af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   StartDlg: {fileID: 289447898}
@@ -5117,53 +5211,6 @@ MonoBehaviour:
   - {fileID: 92289110}
   - {fileID: 1466186766}
   - {fileID: 618053217}
-  clickStartDlgSaveBtn: -1
-  saveData:
-  - level: 0
-    job: 
-    exp: 0
-    maxExp: 0
-    hp: 0
-    maxHp: 0
-    stamina: 0
-    maxStamina: 0
-    satiety: 0
-    quench: 0
-    currentTemperature: 0
-  - level: 0
-    job: 
-    exp: 0
-    maxExp: 0
-    hp: 0
-    maxHp: 0
-    stamina: 0
-    maxStamina: 0
-    satiety: 0
-    quench: 0
-    currentTemperature: 0
-  - level: 0
-    job: 
-    exp: 0
-    maxExp: 0
-    hp: 0
-    maxHp: 0
-    stamina: 0
-    maxStamina: 0
-    satiety: 0
-    quench: 0
-    currentTemperature: 0
-  - level: 0
-    job: 
-    exp: 0
-    maxExp: 0
-    hp: 0
-    maxHp: 0
-    stamina: 0
-    maxStamina: 0
-    satiety: 0
-    quench: 0
-    currentTemperature: 0
-  path: 
   saveDataInfo:
   - {fileID: 1884169316}
   - {fileID: 1604073726}

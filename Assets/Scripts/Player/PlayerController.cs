@@ -5,13 +5,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using System.IO;
 using TMPro;
-
-using UnityEditor.UIElements;
-using System.Resources;
-using Unity.VisualScripting;
 
 /// <summary>
 /// 플레이어 관련 클래스
@@ -203,22 +197,14 @@ public class PlayerController : MonoBehaviour
     private float walkSpeed = 15;
     private float runSpeed = 30;
 
-    // 일시정지 상태 알림
-    private bool pauseState = false;
 
     // 플레이어 상태 UI
     // 0: 레벨, 1: 직업, 2: 경험치, 3: 생명력, 4: 스태미나, 5: 포만감, 6: 수분
     public TextMeshProUGUI[] statUI = new TextMeshProUGUI[7];
     // 0: 경험치, 1: 생명력, 2: 스태미나, 3: 포만감, 4: 수분, 5:체온
     public Slider[] barUI = new Slider[6];
-
-    // 일시정지 패널    
-    public Image pausePanel;
     
-    // 세이브 파일 저장 변수
-    public SaveData[] saveData = new SaveData[4];
-    // 현재 세이브 파일의 위치
-    public sbyte currentSaveNum;
+    
 
     private EnvironmentManager environmentManager;
 
@@ -273,125 +259,6 @@ public class PlayerController : MonoBehaviour
         {
             CurrentTemperature = environmentManager.temperature;
         }
-    }
-    #endregion
-
-    // 일시정지 기능
-    #region
-    /// <summary>
-    /// 일시정지 함수
-    /// </summary>
-    void Pause()
-    {
-        if (pauseState == false)
-        {
-            pausePanel.gameObject.SetActive(false);
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                pauseState = true;
-                // 시간 정지
-                Time.timeScale = 0;
-            }
-        }
-
-        else
-        {
-            pausePanel.gameObject.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                pauseState = false;
-                // 시간을 정상 값으로 전환해 흐르게 한다
-                Time.timeScale = 1;
-            }
-        }
-    }
-
-    /// <summary>
-    /// 게임으로 돌아가는 버튼
-    /// </summary>
-    public void Pause_BackToGame()
-    {
-        pausePanel.gameObject.SetActive(true);
-        pauseState = false;
-        // 시간을 정상 값으로 전환해 흐르게 한다
-        Time.timeScale = 1;
-    }
-
-    /// <summary>
-    /// 설정 조작으로 들어가는 버튼
-    /// </summary>
-    public void Pause_Setting()
-    {
-        
-    }
-
-    /// <summary>
-    /// 게임을 저장하는 버튼
-    /// </summary>
-    public void Pause_SaveGame() => Save();
-    
-    /// <summary>
-    /// 게임을 저장하고 종료해 타이틀 화면으로 가는 버튼
-    /// </summary>
-    public void Pause_SaveAndExitGame()
-    {
-        Save();
-        SceneManager.LoadScene("_Title");
-    }
-    #endregion
-
-    // 데이터 저장과 불러오기
-    #region
-    /// <summary>
-    /// 저장한 데이터를 게임 내로 불러오기
-    /// </summary>
-    public void Load()
-    {
-        string[] jsonData = new string[4];
-        jsonData[currentSaveNum]
-            = File.ReadAllText(Application.persistentDataPath + "/SaveData" + $"{currentSaveNum}" + ".json");
-        saveData[currentSaveNum] = JsonUtility.FromJson<SaveData>(jsonData[currentSaveNum]);
-
-        // 불러올 데이터들
-        Level = saveData[currentSaveNum].level;
-        PlayerJob = saveData[currentSaveNum].job;
-        Exp = saveData[currentSaveNum].exp;
-        MaxExp = saveData[currentSaveNum].maxExp;
-        Hp = saveData[currentSaveNum].hp;
-        MaxHp = saveData[currentSaveNum].maxHp;
-        Stamina = saveData[currentSaveNum].stamina;
-        MaxStamina = saveData[currentSaveNum].maxStamina;
-        Satiety = saveData[currentSaveNum].satiety;
-        Quench = saveData[currentSaveNum].quench;
-        CurrentTemperature = saveData[currentSaveNum].currentTemperature;
-        Direction = saveData[currentSaveNum].direction;
-        Vector = saveData[currentSaveNum].playerLocation;
-    }
-
-    /// <summary>
-    /// 게임 내 데이터를 파일로 저장하기
-    /// </summary>
-    public void Save()
-    {
-        saveData[currentSaveNum].level = Level;
-        saveData[currentSaveNum].job = PlayerJob;
-        saveData[currentSaveNum].exp = Exp;
-        saveData[currentSaveNum].maxExp = MaxExp;
-        saveData[currentSaveNum].hp = Hp;
-        saveData[currentSaveNum].maxHp = MaxHp;
-        saveData[currentSaveNum].stamina = Stamina;
-        saveData[currentSaveNum].maxStamina = MaxStamina;
-        saveData[currentSaveNum].satiety = Satiety;
-        saveData[currentSaveNum].quench = Quench;
-        saveData[currentSaveNum].currentTemperature = CurrentTemperature;
-        saveData[currentSaveNum].direction = Direction;
-        saveData[currentSaveNum].playerLocation = Vector;
-        
-        string[] jsonData = new string[4];
-        jsonData[currentSaveNum]
-            = JsonUtility.ToJson(saveData[currentSaveNum]);
-        File.WriteAllText
-            (Application.persistentDataPath + "/SaveData" + $"{currentSaveNum}" + ".json", jsonData[currentSaveNum]);
     }
     #endregion
 
@@ -481,13 +348,13 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>(); 
         environmentManager = GetComponent<EnvironmentManager>();
         
-        Load();
+        
         //UIActivate();
     }
 
     private void Update()
     {
-        Pause();
+        
     }
 
     // Update is called once per frame
