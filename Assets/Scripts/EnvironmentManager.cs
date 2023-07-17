@@ -18,7 +18,7 @@ public class EnvironmentManager : MonoBehaviour
     // 현재 지역의 온도
     public byte temperature = new byte();
     // 플레이어 컴포넌트
-    private PlayerController playerController;
+    private Player player;
     // 카메라 컴포넌트
     private CameraMovement camera;
 
@@ -27,7 +27,7 @@ public class EnvironmentManager : MonoBehaviour
     void Start()
     {
         // 카메라에 메인 카메라의 컴포넌트 연결
-        playerController = GetComponent<PlayerController>();
+        player = GetComponent<Player>();
         camera = Camera.main.GetComponent<CameraMovement>();
         audioSource = GetComponent<AudioSource>();
         
