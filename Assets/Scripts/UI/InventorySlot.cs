@@ -8,12 +8,14 @@ public class InventorySlot : MonoBehaviour
 {
     public Image icon;
     public TextMeshProUGUI itemCountTxt;
-    public GameObject selectedItem;
+    public Button button;
+    public byte id;
 
-    public void AddItem(Item item)
+    public void Init(byte id, Sprite icon, byte amount)
     {
-        
-        
+        this.id = id;
+        this.icon.sprite = icon;
+        this.itemCountTxt.text = amount.ToString();
     }
 
 

@@ -1,5 +1,11 @@
 using UnityEngine;
 using System.IO;
+using System.Collections;
+
+public enum PlayerState
+{
+    idle, move, attack, die
+}
 
 /// <summary>
 /// 플레이어 관련 클래스
@@ -241,6 +247,9 @@ public class Player : MonoBehaviour
     private float walkSpeed = 15;
     private float runSpeed = 30;
 
+    // 플레이어 상태 관할
+    private PlayerState playerState;
+
     // 플레이어의 중력 관할
     private Rigidbody2D rb;
 
@@ -249,8 +258,9 @@ public class Player : MonoBehaviour
 
     private PlayerUI playerUI;
 
-    public SaveData[] saveData = new SaveData[4];
+    //public SaveData[] saveData = new SaveData[4];
 
+    #region 플레이어 이동 함수
     void Move()
     {
         // 좌우 방향키를 눌러 좌우로 이동 가능
@@ -288,7 +298,19 @@ public class Player : MonoBehaviour
             animator.SetBool("moving", false);
         }
     }
+    #endregion
 
+    private IEnumerator Attack()
+    {
+        animator.SetBool("attacking", true);
+        playerState = PlayerState.attack;
+        yield return null;
+        animator.SetBool("attacking", false);
+        yield return new WaitForSeconds(0.5f);
+        playerState = PlayerState.idle;
+    }
+
+    /*
     /// <summary>
     /// 저장한 데이터를 게임 내로 불러오기
     /// </summary>
@@ -354,6 +376,7 @@ public class Player : MonoBehaviour
         // 시간 정지
         
     }
+    */
 
     private void Awake()
     {
@@ -363,16 +386,19 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerState = PlayerState.idle;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         playerUI = GetComponent<PlayerUI>();
-        Load();
+        //Load();
     }
 
     // Update is called once per frame
     void Update()
     {
-        MoveGameTime();
+        //MoveGameTime();
+        if (Input.GetKeyDown(KeyCode.LeftControl) && playerState != PlayerState.attack)
+            StartCoroutine(Attack());
     }
 
     private void FixedUpdate()

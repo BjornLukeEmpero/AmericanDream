@@ -69,7 +69,7 @@ public class PlayerUI : MonoBehaviour
             pausePanel.gameObject.SetActive(true);
             PauseState = true;
             Time.timeScale = 0;
-            player.StopGameTime();
+            //player.StopGameTime();
         }
 
         else if(Input.GetKeyDown(KeyCode.Escape) && pauseState == true)
@@ -77,7 +77,7 @@ public class PlayerUI : MonoBehaviour
             pausePanel.gameObject.SetActive(false);
             PauseState = false;
             Time.timeScale = 1;
-            player.MoveGameTime();
+            //player.MoveGameTime();
         }
     }
 
@@ -88,20 +88,20 @@ public class PlayerUI : MonoBehaviour
     {
         pausePanel.gameObject.SetActive(false);
         PauseState = false;
-        player.MoveGameTime();
+        //player.MoveGameTime();
     }
 
     /// <summary>
     /// 게임을 저장하는 버튼
     /// </summary>
-    public void Pause_SaveGame() => player.Save();
+    //public void Pause_SaveGame() => player.Save();
 
     /// <summary>
     /// 게임을 저장하고 종료해 타이틀 화면으로 가는 버튼
     /// </summary>
     public void Pause_SaveAndExitGame()
     {
-        player.Save();
+        //player.Save();
         SceneManager.LoadScene("_Title");
     }
 

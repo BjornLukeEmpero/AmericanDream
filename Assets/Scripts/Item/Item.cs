@@ -4,35 +4,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item
+[CreateAssetMenu(fileName = "New Item", menuName = "New Item/item")]
+public class Item : ScriptableObject
 {
-    public byte itemIndex;
-
+    // 아이템의 유형
+    public enum ItemType
+    {
+        Weapon, Bullet, Armor, Tool, Food, Other
+    }
+    
+    // 아이템명
     public string itemName;
-
-    public string itemNameKor;
-
+    // 아이템 
     public ushort buyPrice;
-
-    public ushort sellPrice;
-
+    // 셀당 보유한 아이템 수
     public byte stack;
-
+    // 셀당 최대 보유 가능한 아이템 수
     public byte maxStack;
-
+    // 아이템에 대한 설명
     public string itemExplanation;
 
-    public Item(byte itemIndex, string itemName, string itemNameKor, ushort buyPrice, ushort sellPrice, byte stack, byte maxStack, string itemExplanation)
-    {
-        this.itemIndex = itemIndex;
-        this.itemName = itemName;
-        this.itemNameKor = itemNameKor;
-        this.buyPrice = buyPrice;
-        this.sellPrice = sellPrice;
-        this.stack = stack;
-        this.maxStack = maxStack;
-        this.itemExplanation = itemExplanation;
-    }
+    public ItemType itemType;
+
+    public Sprite itemIamge;
+
+    public GameObject itemPrefab;
 
     // Start is called before the first frame update
     void Start()

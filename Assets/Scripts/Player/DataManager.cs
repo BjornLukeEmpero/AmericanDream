@@ -44,7 +44,12 @@ public class DataManager : MonoBehaviour
     private TitleUIManager titleUIManager;
 
     // 선택한 버튼 번호
+#if UNITY_EDITOR
+    public sbyte clickSaveBtn = 0;
+#else
     public sbyte clickSaveBtn = -1;
+#endif
+
     public sbyte ClickSaveBtn
     {
         get { return clickSaveBtn; }
@@ -111,9 +116,9 @@ public class DataManager : MonoBehaviour
     /// </summary>
     public void Delete()
     {
-        File.Delete(Application.persistentDataPath + "/SaveData" + $"{ClickSaveBtn}" + ".json");
         // 세이브 파일명을 되돌려 비었다고 표시
-        titleUIManager.saveDataInfo[ClickSaveBtn].text = "Empty " + $"{ClickSaveBtn + 1}";
+        //titleUIManager.saveDataInfo[ClickSaveBtn].text = "Empty " + $"{ClickSaveBtn + 1}";
+        File.Delete(Application.persistentDataPath + "/SaveData" + $"{ClickSaveBtn}" + ".json");
         titleUIManager.messageBox[3].gameObject.SetActive(false);
     }
 
