@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: "\uCF54\uB8E8\uD2B8 \uB9AC\uBCFC\uBC84"
   buyPrice: 10000
+  sellPrice: 4000
   stack: 1
   maxStack: 1
   itemExplanation: "\uCF54\uB8E8\uD2B8 \uC0AC\uC758 \uBCA0\uC2A4\uD2B8\uC140\uB7EC
@@ -21,4 +22,4 @@ MonoBehaviour:
     \uB2E4\uB4E4 \uAC00\uC9C0\uACE0 \uB2E4\uB2C8\uB294 \uAE30\uBCF8\uC801\uC778 \uCD1D\uC774\uB2E4."
   itemType: 0
   itemIamge: {fileID: -422147816, guid: 88c7dc6cc15ae0d4fab6c227e4774328, type: 3}
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 7411471278834129028, guid: cb1dfa03230b90f4daf7ab101aa1b067, type: 3}

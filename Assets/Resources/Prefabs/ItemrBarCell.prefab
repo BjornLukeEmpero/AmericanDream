@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 4738422427677839925}
   - component: {fileID: 4738422427677839927}
   - component: {fileID: 4738422427677839926}
-  - component: {fileID: 68896219328214709}
+  - component: {fileID: 4738422427675127460}
   m_Layer: 5
   m_Name: ItemrBarCell
   m_TagString: Untagged
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &68896219328214709
+--- !u!114 &4738422427675127460
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,13 +164,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4738422427677839924}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 331db715ab229bc4da42c8eaadb1ab03, type: 3}
+  m_Script: {fileID: 11500000, guid: a39b00e7cc04bc14ca3a53b2f6298e36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 739609044261554522}
+  item: {fileID: 0}
+  itemCount: 0
+  itemImage: {fileID: 739609044261554522}
   itemCountTxt: {fileID: 2310331804813954270}
-  button: {fileID: 0}
-  id: 0
 --- !u!1 &8849655476500618983
 GameObject:
   m_ObjectHideFlags: 0
