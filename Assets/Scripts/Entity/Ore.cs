@@ -6,19 +6,15 @@ using UnityEngine;
 
 public class Ore : MonoBehaviour
 {
-    [SerializeField]
-    public byte hp;
-
-    public void Mining()
+    public void Damaged()
     {
-        hp--;
-        if (hp <= 0)
-            Destruction();
+        StartCoroutine(BreakCoroutine());
     }
-
-    private void Destruction()
+    
+    IEnumerator BreakCoroutine()
     {
-        Destroy(this);
+        yield return new WaitForSeconds(1f);
+        this.gameObject.SetActive(false);
     }
     
     // Start is called before the first frame update

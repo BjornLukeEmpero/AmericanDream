@@ -1,10 +1,11 @@
 using UnityEngine;
-using System.IO;
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 
 public enum PlayerState
 {
-    idle, move, attack, die
+    idle, move, attack, die, stagger
 }
 
 /// <summary>
@@ -248,26 +249,23 @@ public class Player : MonoBehaviour
     private float runSpeed = 30;
 
     // 플레이어 상태 관할
-    private PlayerState playerState;
+    public PlayerState playerState;
 
     // 플레이어의 중력 관할
-    private Rigidbody2D rb;
+    private Rigidbody2D rigidbody2D;
 
     // 플레이어의 애니메이션을 관할
     private Animator animator;
 
     private PlayerUI playerUI;
 
+    public GameObject projectile;
+
     //public SaveData[] saveData = new SaveData[4];
 
     #region 플레이어 이동 함수
     void Move()
     {
-        // 좌우 방향키를 눌러 좌우로 이동 가능
-        vector3.x = Input.GetAxis("Horizontal");
-        // 상하 방향키를 눌러 상하로 이동 가능
-        vector3.y = Input.GetAxis("Vertical");
-
         if (Vector3 != Vector3.zero)
         {
             // Alt키가 눌려있고 스태미나가 남아있다면
@@ -286,7 +284,7 @@ public class Player : MonoBehaviour
 
             // 왼쪽 Alt 키를 누르면서 방향키로 조작하면 달려가며 누르지 않은 경우 걷는다.
             // speed = Input.GetKey(KeyCode.LeftAlt) && Stamina != 0 ? runSpeed : walkSpeed;
-            rb.MovePosition(transform.position + vector3 * speed * Time.deltaTime);
+            rigidbody2D.MovePosition(transform.position + vector3 * speed * Time.deltaTime);
             animator.SetFloat("moveX", vector3.x);
             animator.SetFloat("moveY", vector3.y);
             animator.SetBool("moving", true);
@@ -300,6 +298,65 @@ public class Player : MonoBehaviour
     }
     #endregion
 
+    public void Knockback(float knockbackTime)
+    {
+        StartCoroutine(KnockbackCoroutine(knockbackTime));
+    }
+
+    private IEnumerator KnockbackCoroutine(float knockbackTime)
+    {
+        if(rigidbody2D !=  null)
+        {
+            yield return new WaitForSeconds(knockbackTime);
+            rigidbody2D.velocity = Vector2.zero;
+            playerState = PlayerState.idle;
+            rigidbody2D.velocity = Vector2.zero;
+        }
+    }
+
+
+    #region 근접공격
+    private IEnumerator MeleeAttackCoruotine()
+    {
+        playerState = PlayerState.attack;
+        yield return null;
+        yield return new WaitForSeconds(1f);
+        playerState = PlayerState.idle;
+    }
+    #endregion
+
+    #region 원거리 공격
+    private IEnumerator ProjectileAttackCoroutine()
+    {
+        animator.SetBool("attacking", true);
+        playerState = PlayerState.attack;
+        yield return null;
+        MakeProjectile();
+        animator.SetBool("attacking", false);
+        playerState = PlayerState.idle;
+        yield return new WaitForSeconds(0.5f);
+        
+    }
+    #endregion
+
+    #region
+    private void MakeProjectile()
+    {
+        Vector2 temp = new Vector2(animator.GetFloat("moveX"), animator.GetFloat("moveY"));
+        Projectile bullet = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Projectile>();
+        bullet.SetProjectile(temp, ChooseProjectileDirection());
+    }
+    #endregion
+
+    #region
+    Vector3 ChooseProjectileDirection()
+    {
+        float temp = Mathf.Atan2(animator.GetFloat("moveY"), animator.GetFloat("moveX")) * Mathf.Rad2Deg;
+        return new Vector3(0,0,temp);
+    }
+    #endregion
+
+    /*
     private IEnumerator Attack()
     {
         animator.SetBool("attacking", true);
@@ -309,6 +366,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         playerState = PlayerState.idle;
     }
+    */
 
     /*
     /// <summary>
@@ -388,7 +446,7 @@ public class Player : MonoBehaviour
     {
         playerState = PlayerState.idle;
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
+        rigidbody2D = GetComponent<Rigidbody2D>();
         playerUI = GetComponent<PlayerUI>();
         //Load();
     }
@@ -396,14 +454,23 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         //MoveGameTime();
         if (Input.GetKeyDown(KeyCode.LeftControl) && playerState != PlayerState.attack)
-            StartCoroutine(Attack());
+            StartCoroutine(Attack());*/
     }
 
     private void FixedUpdate()
     {
-        if(CanPlayerMove == true)
+        // 좌우 방향키를 눌러 좌우로 이동 가능
+        vector3.x = Input.GetAxis("Horizontal");
+        // 상하 방향키를 눌러 상하로 이동 가능
+        vector3.y = Input.GetAxis("Vertical");
+        if(Input.GetKeyDown(KeyCode.Space) && playerState != PlayerState.attack && playerState != PlayerState.stagger)
+            StartCoroutine(MeleeAttackCoruotine());
+        else if(Input.GetKeyDown(KeyCode.LeftControl) && playerState != PlayerState.attack && playerState != PlayerState.stagger)
+            StartCoroutine(ProjectileAttackCoroutine());
+        else if (playerState == PlayerState.idle)
             Move();
 
         RecoverStaminaTime();

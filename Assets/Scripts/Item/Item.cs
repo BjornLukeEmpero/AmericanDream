@@ -39,8 +39,10 @@ public class Item : ScriptableObject
     public ItemType itemType;
     // 아이템의 이미지
     public Sprite itemIamge;
-
+    // 아이템의 프리팹
     public GameObject itemPrefab;
+    // 손에 든 아이템의 유형
+    public string HandHoldObjectType;
 
     // Start is called before the first frame update
     void Start()
