@@ -11,7 +11,7 @@ public class QuickCellController : MonoBehaviour
     [SerializeField] private GameObject quickCellImage; // ¼±ÅÃµÈ Äü¼¿ ÀÌ¹ÌÁö
 
     [SerializeField]
-    private WeaponsController weaponController;
+    private HandHoldObjectManager handHoldObjectManager;
 
     
     private void TryInputNumber()
@@ -29,7 +29,7 @@ public class QuickCellController : MonoBehaviour
     private void ChangeCell(byte num)
     {
         SelectedCell(num);
-        //Execute();
+        Execute();
     }
 
     private void SelectedCell(byte num)
@@ -39,16 +39,15 @@ public class QuickCellController : MonoBehaviour
         quickCellImage.transform.position = quickCells[selectedCell].transform.position;
     }
 
-    /*
     private void Execute()
     {
         if (quickCells[selectedCell].item != null)
         {
             if (quickCells[selectedCell].item.itemType == Item.ItemType.Weapon || quickCells[selectedCell].item.itemType == Item.ItemType.Tool)
-                
+                StartCoroutine(handHoldObjectManager.ChangeHandHoldObjectCoroutine(quickCells[selectedCell].item.HandHoldObjectType, quickCells[selectedCell].item.itemName));
         }
     }
-    */
+
     // Start is called before the first frame update
     void Start()
     {

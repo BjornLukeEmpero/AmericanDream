@@ -23,3 +23,4 @@ MonoBehaviour:
   itemType: 0
   itemIamge: {fileID: -422147816, guid: 88c7dc6cc15ae0d4fab6c227e4774328, type: 3}
   itemPrefab: {fileID: 7411471278834129028, guid: cb1dfa03230b90f4daf7ab101aa1b067, type: 3}
+  HandHoldObjectType: COROOT_REVOLVER

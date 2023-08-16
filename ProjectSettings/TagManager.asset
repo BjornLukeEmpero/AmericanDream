@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Item
   - Ore
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -15,10 +16,10 @@ TagManager:
   - UI
   - Weapon
   - Item
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - EnemyProjectile
+  - PlayerProjectile
+  - Player
   - 
   - 
   - 
