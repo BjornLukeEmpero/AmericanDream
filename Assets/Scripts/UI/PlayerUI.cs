@@ -10,10 +10,10 @@ public class PlayerUI : MonoBehaviour
 {
     // 플레이어 상태 UI
     // 0: 레벨, 1: 직업, 2: 경험치, 3: 생명력, 4: 스태미나, 5: 포만감, 6: 수분
-    public TextMeshProUGUI[] statUI = new TextMeshProUGUI[7];
+    //public TextMeshProUGUI[] statUI = new TextMeshProUGUI[7];
     
     // 0: 경험치, 1: 생명력, 2: 스태미나, 3: 포만감, 4: 수분, 5:체온
-    public Slider[] barUI = new Slider[6];
+    //public Slider[] barUI = new Slider[6];
     // 일시정지 상태 알림
     private bool pauseState = false;
     public bool PauseState
@@ -26,6 +26,8 @@ public class PlayerUI : MonoBehaviour
 
     private Player player;
 
+
+    /*
     public void PlayerStatUIActivate()
     {
         // 0: 레벨, 1: 직업, 2: 경험치/최대 경험치, 3: 생명력/최대 생명력, 4: 스태미나/최대 스태미나
@@ -58,6 +60,7 @@ public class PlayerUI : MonoBehaviour
         barUI[4].value = player.Quench;
         barUI[5].value = player.CurrentTemperature;
     }
+    */
 
     /// <summary>
     /// ESC키를 이용한 게임 일시정지
@@ -122,9 +125,11 @@ public class PlayerUI : MonoBehaviour
         Pause();
     }
 
+    /*
     void FixedUpdate()
     {
         PlayerStatUIActivate();
         PlayerUIActivate();
     }
+    */
 }
