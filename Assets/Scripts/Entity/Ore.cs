@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime;
-using UnityEditor.Purchasing;
 using UnityEngine;
 
 public class Ore : MonoBehaviour
