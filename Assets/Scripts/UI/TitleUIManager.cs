@@ -25,8 +25,6 @@ public class TitleUIManager : MonoBehaviour
     /// </summary>
     public void GameStart() => StartDlg.gameObject.SetActive(true);
 
-    public void GoGame() => SceneManager.LoadScene("PlayingTown");
-
     /// <summary>
     /// 세이브 파일 1 클릭 시
     /// </summary>
@@ -172,8 +170,8 @@ public class TitleUIManager : MonoBehaviour
     void Start()
     {
         //dataManager = GetComponent<DataManager>();
-        // if (DataManager.instance.ClickSaveBtn != -1)
-        //     DataManager.instance.LoadData();
+        if (DataManager.instance.ClickSaveBtn != -1)
+            DataManager.instance.LoadData();
         
     }
 

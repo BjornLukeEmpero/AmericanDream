@@ -68,6 +68,8 @@ public abstract class WeaponsController : MonoBehaviour
         currentFireRate = currentHoldWeapon.fireRate;
         PlaySFX(currentHoldWeapon.fireSound);
         Debug.Log("Fire!");
+
+        MakeProjectile();
     }
 
     private void TryReload()
@@ -86,7 +88,19 @@ public abstract class WeaponsController : MonoBehaviour
         isReload = false;
     }
 
-   
+    private void MakeProjectile()
+    {
+        Vector2 temp = new Vector2(animator.GetFloat("moveX"), animator.GetFloat("moveY"));
+        Projectile bullet = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Projectile>();
+        bullet.SetProjectile(temp, ChooseProjectileDirection());
+    }
+
+    Vector3 ChooseProjectileDirection()
+    {
+        float temp = Mathf.Atan2(animator.GetFloat("moveY"), animator.GetFloat("moveX")) * Mathf.Rad2Deg;
+        return new Vector3(0, 0, temp);
+    }
+
     /*
     private void TryReload()
     {

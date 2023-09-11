@@ -314,6 +314,48 @@ public class Player : MonoBehaviour
         }
     }
 
+
+    #region 근접공격
+    private IEnumerator MeleeAttackCoruotine()
+    {
+        playerState = PlayerState.attack;
+        yield return null;
+        yield return new WaitForSeconds(1f);
+        playerState = PlayerState.idle;
+    }
+    #endregion
+
+    #region 원거리 공격
+    private IEnumerator ProjectileAttackCoroutine()
+    {
+        animator.SetBool("attacking", true);
+        playerState = PlayerState.attack;
+        yield return null;
+        MakeProjectile();
+        animator.SetBool("attacking", false);
+        playerState = PlayerState.idle;
+        yield return new WaitForSeconds(0.5f);
+        
+    }
+    #endregion
+
+    #region
+    private void MakeProjectile()
+    {
+        Vector2 temp = new Vector2(animator.GetFloat("moveX"), animator.GetFloat("moveY"));
+        Projectile bullet = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Projectile>();
+        bullet.SetProjectile(temp, ChooseProjectileDirection());
+    }
+    #endregion
+
+    #region
+    Vector3 ChooseProjectileDirection()
+    {
+        float temp = Mathf.Atan2(animator.GetFloat("moveY"), animator.GetFloat("moveX")) * Mathf.Rad2Deg;
+        return new Vector3(0,0,temp);
+    }
+    #endregion
+
     /*
     private IEnumerator Attack()
     {
@@ -424,7 +466,11 @@ public class Player : MonoBehaviour
         vector3.x = Input.GetAxis("Horizontal");
         // 상하 방향키를 눌러 상하로 이동 가능
         vector3.y = Input.GetAxis("Vertical");
-        if (playerState == PlayerState.idle)
+        if(Input.GetKeyDown(KeyCode.Space) && playerState != PlayerState.attack && playerState != PlayerState.stagger)
+            StartCoroutine(MeleeAttackCoruotine());
+        else if(Input.GetKeyDown(KeyCode.LeftControl) && playerState != PlayerState.attack && playerState != PlayerState.stagger)
+            StartCoroutine(ProjectileAttackCoroutine());
+        else if (playerState == PlayerState.idle)
             Move();
 
         RecoverStaminaTime();
